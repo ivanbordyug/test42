@@ -34,11 +34,11 @@ public class DBManager extends SQLiteOpenHelper {
 				+ "id integer primary key autoincrement," + "userId integer,"
 				+ "name text," + "surname text," + "dob text," + "bio text,"
 				+ "contacts text" + ");");
-		// db.execSQL("INSERT INTO " + tableUsers +
-		// " values(1,'Ivan Bordyug')");
-		// db.execSQL("INSERT INTO " + tableUsersInfo
-		// + " values(1,1, 'Ivan', 'Bordyug', '10.09.1990', '" + getBio()
-		// + "', '" + getContacts() + "')");
+		db.execSQL("INSERT INTO " + tableUsers
+				+ " values(1,'Ivan Bordyug', '1')");
+		db.execSQL("INSERT INTO " + tableUsersInfo
+				+ " values(1,1, 'Ivan', 'Bordyug', '10.09.1990', '" + getBio()
+				+ "', '" + getContacts() + "')");
 	}
 
 	@Override

@@ -25,7 +25,7 @@ public class UserProfileActivity extends Activity {
 		setContentView(R.layout.activity_user_info);
 
 		new TestsManager(this).runTestUP();
-		getUserInfo(getIntent().getExtras().getString("userId"));
+		getUserInfo("1");
 	}
 
 	@Override
@@ -57,14 +57,19 @@ public class UserProfileActivity extends Activity {
 		TextView surname = (TextView) findViewById(R.id.surname);
 		TextView dob = (TextView) findViewById(R.id.dob);
 		TextView bio = (TextView) findViewById(R.id.bio_content);
-		ProfilePictureView imageProfilePictureView = (ProfilePictureView) findViewById(R.id.selection_profile_pic);
+		// ProfilePictureView imageProfilePictureView = (ProfilePictureView)
+		// findViewById(R.id.selection_profile_pic);
 
-		imageProfilePictureView.setProfileId(getFieldStringValue(userInfo, "userId"));
-		name.setText(name.getText().toString() + " " + getFieldStringValue(userInfo, "name"));
+		// imageProfilePictureView.setProfileId(getFieldStringValue(userInfo,
+		// "userId"));
+		name.setText(name.getText().toString() + " "
+				+ getFieldStringValue(userInfo, "name"));
 
-		surname.setText(surname.getText().toString() + " " + getFieldStringValue(userInfo, "surname"));
+		surname.setText(surname.getText().toString() + " "
+				+ getFieldStringValue(userInfo, "surname"));
 
-		dob.setText(dob.getText().toString() + " " + getFieldStringValue(userInfo, "dob"));
+		dob.setText(dob.getText().toString() + " "
+				+ getFieldStringValue(userInfo, "dob"));
 
 		bio.setText(getFieldStringValue(userInfo, "bio"));
 
@@ -73,7 +78,9 @@ public class UserProfileActivity extends Activity {
 
 	private void addContacts(Cursor userInfo) {
 		try {
-			JSONObject object = new JSONObject(getFieldStringValue(userInfo, "contacts")).getJSONObject("root").getJSONObject("contacts");
+			JSONObject object = new JSONObject(getFieldStringValue(userInfo,
+					"contacts")).getJSONObject("root")
+					.getJSONObject("contacts");
 			JSONArray contacts = object.getJSONArray("item");
 			generateContacts(contacts);
 		} catch (Exception e) {
@@ -108,7 +115,8 @@ public class UserProfileActivity extends Activity {
 	}
 
 	private Cursor getUserInfo(DBManager DbManager, String userId) {
-		return DbManager.select("usersinfo", "userId = ?", new String[] { userId });
+		return DbManager.select("usersinfo", "userId = ?",
+				new String[] { userId });
 	}
 
 	private String getFieldStringValue(Cursor cursor, String fieldName) {

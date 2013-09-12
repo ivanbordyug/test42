@@ -7,7 +7,7 @@
     <string name="TestForCommit">Test commit</string>
     <string name="name">Name: </string>
     <string name="surname">Surname: </string>
-    <string name="dob">Date of birth: </string>
+    <string name="dob">DOB: </string>
     <string name="bio">BIO:</string>
     <string name="enableInternetMsg">Please enable internet connection</string>
 
