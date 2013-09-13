@@ -20,9 +20,10 @@ public class DBManager extends SQLiteOpenHelper {
 	private SQLiteDatabase database;
 	private String tableUsers = "users";
 	private String tableUsersInfo = "usersinfo";
+	private static int version = 1;
 
 	public DBManager(Context context) {
-		super(context, "CoffeeDB", null, 1);
+		super(context, "CoffeeDB", null, version);
 		this.context = context;
 	}
 
