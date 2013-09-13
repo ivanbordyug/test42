@@ -20,7 +20,7 @@ public class DBManager extends SQLiteOpenHelper {
 	private SQLiteDatabase database;
 	private String tableUsers = "users";
 	private String tableUsersInfo = "usersinfo";
-	private static int version = 1;
+	private static int version = 2;
 
 	public DBManager(Context context) {
 		super(context, "CoffeeDB", null, version);
@@ -36,6 +36,9 @@ public class DBManager extends SQLiteOpenHelper {
 				+ "id integer primary key autoincrement," + "userId integer,"
 				+ "name text," + "surname text," + "dob text," + "bio text,"
 				+ "contacts text," + "about text" + ");");
+		db.execSQL("create table usersfav ("
+				+ "id integer primary key autoincrement," + "userFavId integer"
+				+ ");");
 		// db.execSQL("INSERT INTO " + tableUsers +
 		// " values(1,'Ivan Bordyug')");
 		// db.execSQL("INSERT INTO " + tableUsersInfo
@@ -45,6 +48,9 @@ public class DBManager extends SQLiteOpenHelper {
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+		db.execSQL("create table if not exists usersfav ("
+				+ "id integer primary key autoincrement," + "userFavId integer"
+				+ ");");
 	}
 
 	private String initializeUser(ContentValues cv, String userName,
@@ -121,5 +127,36 @@ public class DBManager extends SQLiteOpenHelper {
 			initializeUserInfo(user);
 		cursor.close();
 		return user.getId();
+	}
+
+	public void updateFavourite(String favId) {
+		if (!isFavourite(favId)) {
+			ContentValues cv = new ContentValues();
+			cv.put("userFavId", favId);
+			insert("usersfav", null, cv);
+		} else {
+			// database = this.getWritableDatabase();
+
+			this.getWritableDatabase().delete("usersfav", "userFavId = ?",
+					new String[] { favId });
+		}
+	}
+
+	private boolean isFavourite(String favId) {
+		Cursor cursor = select("usersfav", null, null);
+		if (cursor.moveToFirst()) {
+			if (cursor.getString(cursor.getColumnIndex("userFavId")).equals(
+					favId)) {
+				cursor.close();
+				return true;
+			} else {
+				cursor.close();
+				return false;
+			}
+		} else {
+			cursor.close();
+			return false;
+		}
+
 	}
 }

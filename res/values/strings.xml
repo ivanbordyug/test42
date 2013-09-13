@@ -14,5 +14,6 @@
     <string name="leaveInfoLabel">Leave about</string>
     <string name="dateErrorMsg">Wrong date</string>
     <string name="errorEditing">Editing user data test is failed</string>
+    <string name="AddFavErrorMsg">Adding favourite failed</string>
 
 </resources>

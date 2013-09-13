@@ -290,13 +290,13 @@ containing a value of this type.
     }
     public static final class menu {
         public static final int main=0x7f0a0000;
-        public static final int test_project_main=0x7f0a0001;
     }
     public static final class raw {
         public static final int bio=0x7f040000;
         public static final int contacts=0x7f040001;
     }
     public static final class string {
+        public static final int AddFavErrorMsg=0x7f080026;
         public static final int TestForCommit=0x7f08001c;
         public static final int action_settings=0x7f08001b;
         public static final int app_id=0x7f08001a;
