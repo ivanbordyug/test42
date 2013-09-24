@@ -283,6 +283,7 @@ containing a value of this type.
     }
     public static final class menu {
         public static final int main=0x7f0a0000;
+        public static final int test_project_main=0x7f0a0001;
     }
     public static final class raw {
         public static final int bio=0x7f040000;
